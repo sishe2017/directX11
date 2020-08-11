@@ -46,7 +46,7 @@ void ShadowEngine::Run()
 	{
 		//将消息翻译成字符
 		TranslateMessage(&msg);
-		//将消息发送到窗口，出发WndProc回调
+		//将消息发送到窗口，触发WndProc回调
 		DispatchMessage(&msg);
 	}
 }
