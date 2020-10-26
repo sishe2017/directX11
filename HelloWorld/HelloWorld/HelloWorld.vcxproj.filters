@@ -31,6 +31,9 @@
     <Filter Include="DirectX11">
       <UniqueIdentifier>{587833bc-f21b-4b2f-a07b-30cefefb6c8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DDSTextureLoader">
+      <UniqueIdentifier>{dcc0553f-5076-40ff-b73a-2ca5e7cc7d57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShadowEngine.cpp">
@@ -111,6 +114,18 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader\DDSTextureLoader11.cpp">
+      <Filter>DDSTextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureTable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sampler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShadowEngine.h">
@@ -190,6 +205,18 @@
     </ClInclude>
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader\DDSTextureLoader11.h">
+      <Filter>DDSTextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sampler.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

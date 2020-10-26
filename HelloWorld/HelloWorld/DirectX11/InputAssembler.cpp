@@ -1,5 +1,6 @@
 #include "InputAssembler.h"
 #include "../DirectX11.h"
+#include "VertexShader.h"
 
 using namespace Microsoft::WRL;
 
@@ -11,8 +12,8 @@ void InputAssembler::Bind()
 		throw "vertex not associate";
 	//创建顶点布局
 	DirectX11::GetInstance().pDevice->CreateInputLayout(
-		vertexProperties.data(), UINT(vertexProperties.size()), pVertexShader->GetBufferPointer(),
-		pVertexShader->GetBufferSize(), &pInputLayout);
+		vertexProperties.data(), UINT(vertexProperties.size()), pVertexShader->pContent->GetBufferPointer(),
+		pVertexShader->pContent->GetBufferSize(), &pInputLayout);
 	//绑定顶点位置布局
 	DirectX11::GetInstance().pContext->IASetInputLayout(this->pInputLayout.Get());
 	//绑定顶点缓存
@@ -68,6 +69,23 @@ void InputAssembler::SetVertexPos(std::vector<float> vertices, UINT stride, UINT
 	//实例绘制的个数
 	posDesc.InstanceDataStepRate = 0;
 
+	//顶点纹理坐标信息描述
+	D3D11_INPUT_ELEMENT_DESC textureDesc;
+	//顶点着色器中的位置的语义名字
+	posDesc.SemanticName = "TEXCOORD";
+	//语义索引，当程序中含有相同的语义的时候，我们需要使用语义索引进行区分
+	posDesc.SemanticIndex = 0;
+	//传入的数据的类型
+	posDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+	//输入槽编号，
+	posDesc.InputSlot = 0;
+	//读取数据的起始位置偏移
+	posDesc.AlignedByteOffset = 0;
+	//输入槽中数据的类型
+	posDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	//实例绘制的个数
+	posDesc.InstanceDataStepRate = 0;
+
 	//记录顶点属性描述
 	vertexProperties.push_back(posDesc);
 }
@@ -108,7 +126,7 @@ void InputAssembler::SetPrimitive(BasicPrimitive basicPrimitive)
 }
 
 //关联顶点着色器
-void InputAssembler::AssociateVertexShader(std::wstring path)
+void InputAssembler::AssociateVertexShader(std::shared_ptr<VertexShader> pVertexShader)
 {
-	D3DReadFileToBlob(L"VertexShader.cso", &pVertexShader);
+	this->pVertexShader = pVertexShader;
 }

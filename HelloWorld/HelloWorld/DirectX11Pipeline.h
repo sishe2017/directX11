@@ -28,6 +28,11 @@ private:
 	std::shared_ptr<InputAssembler> pInputAssembler;
 	//顶点着色器
 	std::shared_ptr<VertexShader> pVertexShader;
+	//流水线的顶点着色器是否更改过的标志
+	bool hasModifyVS = false;
+
 	//像素着色器
 	std::shared_ptr<PixelShader> pPixelShader;
+	//流水线的顶点着色器是否更改过的标志
+	bool hasModifyPS = false;
 };

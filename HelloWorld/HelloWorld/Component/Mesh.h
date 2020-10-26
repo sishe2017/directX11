@@ -20,7 +20,7 @@ public:
 	//绘制网格
 	void Draw();
 	//加载顶点着色器
-	void LoadVertexShader(std::wstring path);
+	void LoadVertexShader(std::wstring shaderName);
 
 private:
 	//游戏物体的顶点装配器

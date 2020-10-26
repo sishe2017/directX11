@@ -30,7 +30,7 @@ std::shared_ptr<GameObject> GameObject::CreatePrimitive(PrimitiveType primitiveT
 		auto mesh = make_shared<Mesh>();
 		mesh->SetVertices(Geometry::boxInfo.vertices);
 		mesh->SetIndex(Geometry::boxInfo.indices);
-		mesh->LoadVertexShader(L"Shader/CubeVS.cso");
+		mesh->LoadVertexShader(L"CubeVS");
 		gameObject->AddComponent(mesh);
 		//ÉèÖÃ²ÄÖÊ
 		auto material = make_shared<Material>();
@@ -44,7 +44,7 @@ std::shared_ptr<GameObject> GameObject::CreatePrimitive(PrimitiveType primitiveT
 			1.0f, 0.0f, 1.0f, 0.0f,
 			1.0f, 1.0f, 0.0f, 0.0f,
 		};
-		material->LoadPixelShader(L"Shader/CubePS.cso");
+		material->LoadPixelShader(L"CubePS");
 		material->pixelShader->SetConstant(colors, 0);
 		gameObject->AddComponent(material);
 	}

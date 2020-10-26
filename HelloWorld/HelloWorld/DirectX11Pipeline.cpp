@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 //绑定IA
 void DirectX11Pipeline::BindInputAssembler(std::shared_ptr<InputAssembler> ia)
 {
@@ -12,33 +11,56 @@ void DirectX11Pipeline::BindInputAssembler(std::shared_ptr<InputAssembler> ia)
 //绑定VS
 void DirectX11Pipeline::BindVertexShader(std::shared_ptr<VertexShader> vs)
 {
-	GetInstance().pVertexShader = vs;
+	if (vs != GetInstance().pVertexShader)
+	{
+		GetInstance().pVertexShader = vs;
+		GetInstance().hasModifyVS = true;
+	}
 }
 
 //绑定PS
 void DirectX11Pipeline::BindPixelShader(std::shared_ptr<PixelShader> ps)
 {
-	GetInstance().pPixelShader = ps;
+	if (ps != GetInstance().pPixelShader)
+	{
+		GetInstance().pPixelShader = ps;
+		GetInstance().hasModifyPS = true;
+	}
 }
 
 //启用流水线
 void DirectX11Pipeline::Start()
 {
-	auto directX11Pipeline = &(DirectX11Pipeline::GetInstance());
 	//顶点装配器非空，绑定顶点着色器
-	if (directX11Pipeline->pInputAssembler)
-		directX11Pipeline->pInputAssembler->Bind();
+	if (GetInstance().pInputAssembler)
+		GetInstance().pInputAssembler->Bind();
 	//错误处理
 	else
+	{
 		throw "not set input assembler";
-	//顶点着色器非空绑定顶点着色器
-	if (directX11Pipeline->pVertexShader)
-		directX11Pipeline->pVertexShader->Bind();
-	else
+	}
+
+	//顶点着色器修改过则重新绑定顶点着色器
+	if (GetInstance().hasModifyVS)
+	{
+		GetInstance().pVertexShader->Bind();
+		GetInstance().hasModifyVS = false;
+	}
+	else if (GetInstance().pVertexShader == nullptr)
+	{
 		throw "not set vertex shader";
+	}
+
 	//像素着色器非空绑定像素着色器
-	if (directX11Pipeline->pPixelShader)
-		directX11Pipeline->pPixelShader->Bind();
+	if (GetInstance().hasModifyPS)
+	{
+		GetInstance().pPixelShader->Bind();
+		GetInstance().hasModifyPS = false;
+	}
+	else if (GetInstance().pPixelShader == nullptr)
+	{
+		throw "not set pixel shader";
+	}
 }
 
 DirectX11Pipeline& DirectX11Pipeline::GetInstance()

@@ -6,12 +6,12 @@
 #include <d3d11.h>
 #include <string>
 
-
+//顶点着色器
 class VertexShader
 {
+	friend class InputAssembler;
 public:
-	//加载顶点着色器
-	void Load(std::wstring path);
+	VertexShader(std::wstring path);
 	//绑定顶点着色器
 	void Bind();
 	//设置顶点着色器中的常量

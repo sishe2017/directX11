@@ -13,6 +13,8 @@ class DirectX11
 	friend class InputAssembler;
 	friend class VertexShader;
 	friend class PixelShader;
+	friend class Texture;
+	friend class Sampler;
 
 public:
 

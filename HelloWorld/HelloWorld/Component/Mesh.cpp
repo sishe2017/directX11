@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "../GameObject.h"
 #include "../DirectX11Pipeline.h"
+#include "../ShaderTable.h"
 
 using namespace std;
 
@@ -10,9 +11,6 @@ Mesh::Mesh()
 	inputAssembler = make_shared<InputAssembler>();
 	//绘制的基本图元设置为三角形
 	inputAssembler->SetPrimitive(BasicPrimitive::Triangle);
-	
-	//创建顶点着色器
-	vertexShader = make_shared<VertexShader>();
 }
 
 //设置顶点数据
@@ -39,10 +37,10 @@ void Mesh::Draw()
 }
 
 //加载顶点着色器
-void Mesh::LoadVertexShader(std::wstring path)
+void Mesh::LoadVertexShader(std::wstring shaderName)
 {
-	//顶点装配器设置联系的VS
-	inputAssembler->AssociateVertexShader(path);
-	//顶点着色器加载VS代码
-	vertexShader->Load(path);
+	//获取顶点着色器
+	this->vertexShader = ShaderTable::GetVertexShader(shaderName);
+	//设置顶点装配器联系的VS
+	inputAssembler->AssociateVertexShader(this->vertexShader);
 }

@@ -1,9 +1,11 @@
-cbuffer surface
-{
-    float4 face_color[6];
-};
+//纹理
+Texture2D texture0 : register(t0);
+//采样器
+SamplerState sampler0 : register(t0);
 
-float4 main(uint tid : SV_PrimitiveID) : SV_TARGET
+
+float4 main(float2 texCrd : TEXCOORD) : SV_TARGET
 {
-	return face_color[tid / 2];
+    //根据纹理坐标对纹理进行采样
+    return texture0.Sample(sampler0, texCrd);
 }

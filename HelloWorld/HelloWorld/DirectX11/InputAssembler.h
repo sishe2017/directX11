@@ -4,7 +4,9 @@
 #include <wrl.h>
 #include <d3d11.h>
 #include <string>
+#include <memory>
 
+class VertexShader;
 
 class InputAssembler
 {
@@ -25,7 +27,7 @@ public:
 	//设置绘制的基本图元
 	void SetPrimitive(BasicPrimitive basicPrimitive);
 	//关联顶点着色器
-	void AssociateVertexShader(std::wstring path);
+	void AssociateVertexShader(std::shared_ptr<VertexShader> pVertexShader);
 	//设置顶点位置数据
 	void SetVertexPos(std::vector<float> positions, UINT stride = 3 * sizeof(float), UINT offset = 0);
 	//设置顶点索引数据
@@ -45,7 +47,7 @@ private:
 	//顶点属性集合
 	std::vector<D3D11_INPUT_ELEMENT_DESC> vertexProperties;
 	//关联的顶点着色器
-	Microsoft::WRL::ComPtr<ID3DBlob> pVertexShader;
+	std::shared_ptr<VertexShader> pVertexShader;
 	//顶点索引
 	std::vector<unsigned int> indices;
 };

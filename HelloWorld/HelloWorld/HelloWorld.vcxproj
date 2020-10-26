@@ -144,6 +144,7 @@
     <ClCompile Include="Component\Mesh.cpp" />
     <ClCompile Include="Component\ScriptBase.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
+    <ClCompile Include="DDSTextureLoader\DDSTextureLoader11.cpp" />
     <ClCompile Include="DirectX11.cpp" />
     <ClCompile Include="DirectX11Pipeline.cpp" />
     <ClCompile Include="DirectX11\ConstantBuffer.cpp" />
@@ -157,8 +158,11 @@
     <ClCompile Include="Geometry\Vector3.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Sampler.cpp" />
     <ClCompile Include="Scripts\CubeBehavior.cpp" />
     <ClCompile Include="ShaderTable.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureTable.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window\Keyboard.cpp" />
     <ClCompile Include="Window\Mouse.cpp" />
@@ -172,6 +176,7 @@
     <ClInclude Include="Component\Mesh.h" />
     <ClInclude Include="Component\ScriptBase.h" />
     <ClInclude Include="Component\Transform.h" />
+    <ClInclude Include="DDSTextureLoader\DDSTextureLoader11.h" />
     <ClInclude Include="DirectX11.h" />
     <ClInclude Include="DirectX11Pipeline.h" />
     <ClInclude Include="DirectX11\ConstantBuffer.h" />
@@ -185,9 +190,12 @@
     <ClInclude Include="Geometry\Vector3.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Sampler.h" />
     <ClInclude Include="Scripts\CubeBehavior.h" />
     <ClInclude Include="ShaderTable.h" />
     <ClInclude Include="ShadowEngine.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureTable.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="Window\Keyboard.h" />
@@ -200,12 +208,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Shader\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Shader\%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="Shader\CubeVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Shader\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Shader\%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

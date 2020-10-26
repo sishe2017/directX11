@@ -3,7 +3,7 @@
 #include "../DirectX11.h"
 
 //加载顶点着色器
-void VertexShader::Load(std::wstring path)
+VertexShader::VertexShader(std::wstring path)
 {
 	D3DReadFileToBlob(path.c_str(), &pContent);
 	DirectX11::GetInstance().pDevice->CreateVertexShader(
@@ -17,9 +17,6 @@ void VertexShader::Bind()
 {
 	//绑定顶点着色器
 	DirectX11::GetInstance().pContext->VSSetShader(pVertexShader.Get(), nullptr, 0);
-	//绑定常量
-	for (int i = 0; i < datas.size(); i++)
-		DirectX11::GetInstance().pContext->VSSetConstantBuffers(0, 1, datas[i].pBuffer.GetAddressOf());
 }
 
 //设置顶点着色器中的常量
@@ -34,4 +31,8 @@ void VertexShader::SetConstant(ConstantBuffer constantBuffer, unsigned int index
 	//改变常量
 	else
 		datas[index] = constantBuffer;
+
+	//绑定常量
+	for (int i = 0; i < datas.size(); i++)
+		DirectX11::GetInstance().pContext->VSSetConstantBuffers(0, 1, datas[i].pBuffer.GetAddressOf());
 }
