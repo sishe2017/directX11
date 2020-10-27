@@ -1,15 +1,3 @@
-﻿  Material.cpp
-  DDSTextureLoader11.cpp
-  DirectX11.cpp
-  ConstantBuffer.cpp
-  InputAssembler.cpp
-  PixelShader.cpp
-  VertexShader.cpp
-  GameObject.cpp
-  Texture.cpp
-  WinMain.cpp
-  ShadowEngine.cpp
-  正在生成代码...
-  LINK : 没有找到 D:\DirectXObject\HelloWorld\x64\Debug\HelloWorld.exe 或上一个增量链接没有生成它；正在执行完全链接
+﻿  InputAssembler.cpp
 DDSTextureLoader11.obj : error LNK2001: 无法解析的外部符号 WKPDID_D3DDebugObjectName
-D:\DirectXObject\HelloWorld\x64\Debug\HelloWorld.exe : fatal error LNK1120: 1 个无法解析的外部命令
+F:\GitRepository\DirectX11\HelloWorld\x64\Debug\HelloWorld.exe : fatal error LNK1120: 1 个无法解析的外部命令

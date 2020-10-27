@@ -14,7 +14,7 @@ struct VSOut
     float4 pos : SV_Position;
 };
 
-float4 main(float3 pos : POSITION, float2 texCrd : TEXCOORD) : SV_POSITION
+VSOut main(float3 pos : POSITION, float2 texCrd : TEXCOORD)
 {
     VSOut vsOut;
     vsOut.pos = mul(float4(pos, 1.0f), transform);

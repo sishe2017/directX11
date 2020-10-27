@@ -88,6 +88,7 @@ void InputAssembler::SetVertexPos(std::vector<float> vertices, UINT stride, UINT
 
 	//记录顶点属性描述
 	vertexProperties.push_back(posDesc);
+	vertexProperties.push_back(textureDesc);
 }
 
 //设置顶点索引数据
