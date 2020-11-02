@@ -97,7 +97,7 @@ void InputAssembler::SetVertexTexCoord(std::vector<float> texCoords)
 	//输入槽编号，
 	textureDesc.InputSlot = 0;
 	//读取数据的起始位置偏移
-	textureDesc.AlignedByteOffset = 0;
+	textureDesc.AlignedByteOffset = sizeof(float) * this->stride;
 	//输入槽中数据的类型
 	textureDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	//实例绘制的个数
