@@ -44,8 +44,11 @@ private:
 	std::shared_ptr<VertexShader> pVertexShader;
 	//顶点索引
 	std::vector<unsigned int> indices;
-	//数据步长
-	unsigned int stride = 0;
+	//数据步长集合
+	std::vector<unsigned int> strides;
 	//dx11 buffer
 	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
+
+	//获取数据现有的步长
+	unsigned int GetCurrentStride();
 };

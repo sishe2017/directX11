@@ -14,9 +14,7 @@ void InputAssembler::BindVertexData()
 
 	//将顶点的数据集合成一维数组
 	vector<float> vertexData;
-	for (int i = 0; i < vertexDatas.size(); i++)
-		for (int j = 0; j < vertexDatas[i].size(); j++)
-			vertexData.push_back(vertexDatas[i][j]);
+
 
 	//缓存描述信息
 	D3D11_BUFFER_DESC bufferDesc;
@@ -55,6 +53,15 @@ void InputAssembler::BindVertexData()
 	DirectX11::GetInstance().pContext->IASetPrimitiveTopology(this->basicPrimitive);
 }
 
+//获取数据现有的步长
+unsigned int InputAssembler::GetCurrentStride()
+{
+	unsigned int ret = 0;
+	for (auto c : this->strides)
+		ret += c;
+	return ret;
+}
+
 //设置顶点位置数据
 void InputAssembler::SetVertexPos(std::vector<float> pos, UINT stride)
 {
@@ -80,7 +87,7 @@ void InputAssembler::SetVertexPos(std::vector<float> pos, UINT stride)
 	//记录顶点数据
 	vertexDatas.push_back(pos);
 	//记录步长
-	this->stride += stride;
+	strides.push_back(stride);
 }
 
 //设置顶点纹理坐标
@@ -108,7 +115,7 @@ void InputAssembler::SetVertexTexCoord(std::vector<float> texCoords)
 	//记录顶点数据
 	vertexDatas.push_back(texCoords);
 	//记录步长
-	this->stride += 2;
+	strides.push_back(2);
 }
 
 //设置顶点索引数据
