@@ -10,7 +10,7 @@ std::vector<unsigned int> boxIndieces{
 	4, 5, 6, 5, 7, 6,
 	3, 6, 7, 2, 6, 3
 };
-std::vector<float> boxVertices
+std::vector<float> boxPos
 {
 	1.0f, 1.0f, 1.0f,
 	1.0f, 1.0f, -1.0f,
@@ -21,4 +21,15 @@ std::vector<float> boxVertices
 	-1.0f, -1.0f, 1.0f,
 	-1.0f, -1.0f, -1.0f,
 };
-VertexInfo Geometry::boxInfo(boxVertices, boxIndieces);
+std::vector<float> boxTexCoords
+{
+	0, 0,
+	0, 1,
+	1, 0,
+	1, 1,
+	0, 0,
+	0, 1,
+	1, 0,
+	1, 1
+};
+VertexInfo Geometry::boxInfo(boxPos, boxTexCoords, boxIndieces);

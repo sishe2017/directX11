@@ -14,7 +14,9 @@ public:
 	Mesh();
 
 	//设置顶点数据
-	void SetVertices(std::vector<float> vertices);
+	void SetVertexPos(std::vector<float> vertices);
+	//设置纹理坐标
+	void SetVertexTexCoord(std::vector<float> texCoords);
 	//设置顶点索引
 	void SetIndex(std::vector<unsigned int> indices);
 	//绘制网格

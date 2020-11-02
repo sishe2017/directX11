@@ -33,7 +33,7 @@ void DirectX11Pipeline::Start()
 {
 	//顶点装配器非空，绑定顶点着色器
 	if (GetInstance().pInputAssembler)
-		GetInstance().pInputAssembler->Bind();
+		GetInstance().pInputAssembler->BindVertexData();
 	//错误处理
 	else
 	{

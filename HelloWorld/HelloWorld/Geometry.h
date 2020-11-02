@@ -6,12 +6,15 @@
 class VertexInfo
 {
 public:
-	VertexInfo(std::vector<float> vertices, std::vector<unsigned int> indices) :
-		vertices(vertices),
+	VertexInfo(std::vector<float> vertices, std::vector<float> texCoords, std::vector<unsigned int> indices) :
+		pos(vertices),
+		texCoords(texCoords),
 		indices(indices) {}
 
 	//位置
-	std::vector<float> vertices;
+	std::vector<float> pos;
+	//纹理坐标
+	std::vector<float> texCoords;
 	//索引
 	std::vector<unsigned int> indices;
 };

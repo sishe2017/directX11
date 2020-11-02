@@ -13,41 +13,39 @@ class InputAssembler
 	friend class DirectX11;
 	friend class DirectX11Pipeline;
 
-	//顶点数据
-	struct VertexData
-	{
-		//顶点数据缓存
-		Microsoft::WRL::ComPtr<ID3D11Buffer> pVertex;
-		//缓存中一个顶点的属性长度
-		UINT stride = 0;
-		//缓存开始读取的位置偏移
-		UINT offset = 0;
-	};
 public:
 	//设置绘制的基本图元
 	void SetPrimitive(BasicPrimitive basicPrimitive);
 	//关联顶点着色器
 	void AssociateVertexShader(std::shared_ptr<VertexShader> pVertexShader);
+	//设置顶点所有数据
+	void SetVertexData(std::vector<float> data, std::vector<unsigned int> strides, std::vector<std::string> semantics);
 	//设置顶点位置数据
-	void SetVertexPos(std::vector<float> positions, UINT stride = 3 * sizeof(float), UINT offset = 0);
+	void SetVertexPos(std::vector<float> positions, UINT stride = 3 * sizeof(float));
+	//设置顶点纹理坐标
+	void SetVertexTexCoord(std::vector<float> texCoords);
 	//设置顶点索引数据
-	void SetVertexIndex(std::vector<unsigned int> indices);
-	//绑定输入装配阶段
-	void Bind();
+	void SetVertexIndex(std::vector<unsigned int> &indices);
+	//把顶点的数据绑定输入装配阶段
+	void BindVertexData();
 
 private:
 	//基本图元默认是三角形
 	D3D11_PRIMITIVE_TOPOLOGY basicPrimitive = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	//顶点位置数据
-	VertexData vertexPosition;
 	//顶点位置的布局
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;
 	//顶点索引数据
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndex;
-	//顶点属性集合
-	std::vector<D3D11_INPUT_ELEMENT_DESC> vertexProperties;
+	//顶点属性描述集合
+	std::vector<D3D11_INPUT_ELEMENT_DESC> vertexDescs;
+	//顶点数据集合
+	std::vector<std::vector<float>> vertexDatas;
 	//关联的顶点着色器
 	std::shared_ptr<VertexShader> pVertexShader;
 	//顶点索引
 	std::vector<unsigned int> indices;
+	//数据步长
+	unsigned int stride = 0;
+	//dx11 buffer
+	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
 };

@@ -1,5 +1,4 @@
 #pragma once
-#include "DDSTextureLoader/DDSTextureLoader11.h"
 #include <string>
 #include <d3d11.h>
 #include <wrl.h>

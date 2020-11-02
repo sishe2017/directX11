@@ -28,24 +28,14 @@ std::shared_ptr<GameObject> GameObject::CreatePrimitive(PrimitiveType primitiveT
 	{
 		//设置网格
 		auto mesh = make_shared<Mesh>();
-		mesh->SetVertices(Geometry::boxInfo.vertices);
+		mesh->SetVertexPos(Geometry::boxInfo.pos);
 		mesh->SetIndex(Geometry::boxInfo.indices);
 		mesh->LoadVertexShader(L"CubeVS");
 		gameObject->AddComponent(mesh);
 		//设置材质
 		auto material = make_shared<Material>();
-		//立方体的面颜色
-		std::vector<float> colors =
-		{
-			1.0f, 0.0f, 0.0f, 0.0f,
-			0.0f, 1.0f, 0.0f, 0.0f,
-			0.0f, 0.0f, 1.0f, 0.0f,
-			0.0f, 1.0f, 1.0f, 0.0f,
-			1.0f, 0.0f, 1.0f, 0.0f,
-			1.0f, 1.0f, 0.0f, 0.0f,
-		};
 		material->LoadPixelShader(L"CubePS");
-		material->pixelShader->SetConstant(colors, 0);
+		material->LoadTexture(L"Images/kappa50.png");
 		gameObject->AddComponent(material);
 	}
 

@@ -34,6 +34,9 @@
     <Filter Include="DDSTextureLoader">
       <UniqueIdentifier>{dcc0553f-5076-40ff-b73a-2ca5e7cc7d57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WICTextureLoader">
+      <UniqueIdentifier>{f634ec06-3453-441d-b330-f09e26ffbac4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShadowEngine.cpp">
@@ -126,6 +129,9 @@
     <ClCompile Include="Sampler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="WICTextureLoader\WICTextureLoader11.cpp">
+      <Filter>WICTextureLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShadowEngine.h">
@@ -217,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Sampler.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WICTextureLoader\WICTextureLoader11.h">
+      <Filter>WICTextureLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

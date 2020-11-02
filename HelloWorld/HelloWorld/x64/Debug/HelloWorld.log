@@ -1,3 +1,8 @@
-﻿  InputAssembler.cpp
-DDSTextureLoader11.obj : error LNK2001: 无法解析的外部符号 WKPDID_D3DDebugObjectName
-F:\GitRepository\DirectX11\HelloWorld\x64\Debug\HelloWorld.exe : fatal error LNK1120: 1 个无法解析的外部命令
+﻿  DirectX11Pipeline.cpp
+  InputAssembler.cpp
+  GameObject.cpp
+  Geometry.cpp
+  WinMain.cpp
+  正在生成代码...
+  LINK : 没有找到 D:\GitResponsitory\directX11\HelloWorld\x64\Debug\HelloWorld.exe 或上一个增量链接没有生成它；正在执行完全链接
+  HelloWorld.vcxproj -> D:\GitResponsitory\directX11\HelloWorld\x64\Debug\HelloWorld.exe

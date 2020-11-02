@@ -14,9 +14,14 @@ Mesh::Mesh()
 }
 
 //设置顶点数据
-void Mesh::SetVertices(std::vector<float> vertices)
+void Mesh::SetVertexPos(std::vector<float> vertices)
 {
 	inputAssembler->SetVertexPos(vertices);
+}
+
+//设置纹理坐标
+void Mesh::SetVertexTexCoord(std::vector<float> texCoords)
+{
 }
 
 //设置顶点索引

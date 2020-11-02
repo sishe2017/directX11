@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include "../DirectX11/PixelShader.h"
+#include <vector>
 
 class Texture;
 
@@ -24,7 +25,7 @@ public:
 	//游戏物体的像素着色器
 	std::shared_ptr<PixelShader> pixelShader;
 private:
-	//纹理
-	std::shared_ptr<Texture> texture;
+	//纹理集合
+	std::vector<std::shared_ptr<Texture>> textures;
 };
 

@@ -31,5 +31,9 @@ void Material::Draw()
 //加载纹理
 void Material::LoadTexture(std::wstring path)
 {
-	this->texture = TextureTable::GetTexture(path);
+	auto pTexture = TextureTable::GetTexture(path);
+	//从纹理表中读取纹理
+	this->textures.push_back(pTexture);
+	//像素着色器加载纹理
+	this->pixelShader->LoadTexture(pTexture);
 }

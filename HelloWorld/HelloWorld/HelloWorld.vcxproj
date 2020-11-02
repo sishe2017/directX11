@@ -164,6 +164,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureTable.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="WICTextureLoader\WICTextureLoader11.cpp" />
     <ClCompile Include="Window\Keyboard.cpp" />
     <ClCompile Include="Window\Mouse.cpp" />
     <ClCompile Include="Window\Window.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="TextureTable.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Type.h" />
+    <ClInclude Include="WICTextureLoader\WICTextureLoader11.h" />
     <ClInclude Include="Window\Keyboard.h" />
     <ClInclude Include="Window\Mouse.h" />
     <ClInclude Include="Window\Window.h" />
