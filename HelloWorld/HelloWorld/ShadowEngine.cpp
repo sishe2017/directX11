@@ -81,7 +81,7 @@ void ShadowEngine::Update()
 //场景的编辑
 void ShadowEngine::EditScene()
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		//todo：游戏一开始物体的设置：
 		auto cube = GameObject::CreatePrimitive(PrimitiveType::Cube);

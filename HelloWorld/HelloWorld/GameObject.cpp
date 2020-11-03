@@ -28,7 +28,9 @@ std::shared_ptr<GameObject> GameObject::CreatePrimitive(PrimitiveType primitiveT
 	{
 		//设置网格
 		auto mesh = make_shared<Mesh>();
+		//设置网格的顶点数据
 		mesh->SetVertexPos(Geometry::boxInfo.pos);
+		mesh->SetVertexTexCoord(Geometry::boxInfo.texCoords);
 		mesh->SetIndex(Geometry::boxInfo.indices);
 		mesh->LoadVertexShader(L"CubeVS");
 		gameObject->AddComponent(mesh);

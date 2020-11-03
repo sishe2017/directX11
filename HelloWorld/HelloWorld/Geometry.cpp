@@ -21,6 +21,7 @@ std::vector<float> boxPos
 	-1.0f, -1.0f, 1.0f,
 	-1.0f, -1.0f, -1.0f,
 };
+
 std::vector<float> boxTexCoords
 {
 	0, 0,

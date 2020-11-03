@@ -12,30 +12,8 @@ void InputAssembler::BindVertexData()
 	if (!pVertexShader)
 		throw "vertex not associate";
 
-	//将顶点的数据集合成一维数组
-	vector<float> vertexData;
-
-
-	//缓存描述信息
-	D3D11_BUFFER_DESC bufferDesc;
-	//标志缓存用于顶点缓存
-	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	//用途是默认用途：GPU可以读写这片缓存
-	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	//CPU不可访问这片内存
-	bufferDesc.CPUAccessFlags = 0;
-	//不适用其他杂项标志
-	bufferDesc.MiscFlags = 0;
-	//缓存的大小，以字节为单位
-	bufferDesc.ByteWidth = static_cast<UINT>(sizeof(float) * this->stride);
-	//每个顶点的大小
-	// todo:目前没看到这个属性的作用
-	bufferDesc.StructureByteStride = 0;
-	//设置常量缓存存储的数据
-	D3D11_SUBRESOURCE_DATA sourceData;
-	sourceData.pSysMem = vertexData.data();
-	//创建顶点位置缓存对象
-	DirectX11::GetInstance().pDevice->CreateBuffer(&bufferDesc, &sourceData, &(buffer));
+	//当前数据步长
+	UINT stride = GetCurrentStride() * sizeof(float);
 
 	//创建顶点布局
 	DirectX11::GetInstance().pDevice->CreateInputLayout(
@@ -51,6 +29,43 @@ void InputAssembler::BindVertexData()
 	DirectX11::GetInstance().pContext->IASetIndexBuffer(pIndex.Get(), DXGI_FORMAT_R32_UINT, 0);
 	//设置图元装配的目标图元
 	DirectX11::GetInstance().pContext->IASetPrimitiveTopology(this->basicPrimitive);
+}
+
+//提交顶点数据缓存
+void InputAssembler::CommitVertexData()
+{
+	//计算顶点数量
+	auto vertexNum = vertexDatas[0].size() / strides[0];
+	//将顶点的数据集合成一维数组
+	vector<float> vertexData;
+	for (size_t i = 0; i < vertexNum; i++)
+		for (size_t j = 0; j < strides.size(); j++)
+			for (unsigned int k = 0; k < strides[j]; k++)
+				vertexData.push_back(vertexDatas[j][k + i * strides[j]]);
+
+	//当前数据步长
+	UINT stride = GetCurrentStride() * sizeof(float);
+
+	//缓存描述信息
+	D3D11_BUFFER_DESC bufferDesc;
+	//标志缓存用于顶点缓存
+	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	//用途是默认用途：GPU可以读写这片缓存
+	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	//CPU不可访问这片内存
+	bufferDesc.CPUAccessFlags = 0;
+	//不适用其他杂项标志
+	bufferDesc.MiscFlags = 0;
+	//缓存的大小，以字节为单位
+	bufferDesc.ByteWidth = static_cast<UINT>(sizeof(float) * vertexData.size());
+	//每个顶点的大小
+	// todo:目前没看到这个属性的作用
+	bufferDesc.StructureByteStride = 0;
+	//设置常量缓存存储的数据
+	D3D11_SUBRESOURCE_DATA sourceData;
+	sourceData.pSysMem = vertexData.data();
+	//创建顶点位置缓存对象
+	DirectX11::GetInstance().pDevice->CreateBuffer(&bufferDesc, &sourceData, &(buffer));
 }
 
 //获取数据现有的步长
@@ -104,7 +119,7 @@ void InputAssembler::SetVertexTexCoord(std::vector<float> texCoords)
 	//输入槽编号，
 	textureDesc.InputSlot = 0;
 	//读取数据的起始位置偏移
-	textureDesc.AlignedByteOffset = sizeof(float) * this->stride;
+	textureDesc.AlignedByteOffset = sizeof(float) * GetCurrentStride();
 	//输入槽中数据的类型
 	textureDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	//实例绘制的个数
@@ -165,9 +180,6 @@ void InputAssembler::SetVertexData(std::vector<float> data, std::vector<unsigned
 	//记录每个顶点属性
 	for (int i = 0; i < strides.size(); i++)
 	{
-		//记录顶点步长
-		stride += strides[i];
-
 		//顶点输入描述信息
 		D3D11_INPUT_ELEMENT_DESC desc;
 		//顶点着色器中的语义名字
@@ -190,4 +202,6 @@ void InputAssembler::SetVertexData(std::vector<float> data, std::vector<unsigned
 	}
 	//记录顶点数据
 	vertexDatas.push_back(data);
+	//记录步长数据
+	this->strides = strides;
 }

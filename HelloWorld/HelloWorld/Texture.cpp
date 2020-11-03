@@ -34,5 +34,5 @@ Texture::Texture(std::wstring path)
 //°ó¶¨ÎÆÀí
 void Texture::Bind()
 {
-	DirectX11::GetInstance().pContext->PSGetShaderResources(0, 1, this->pTextureView.GetAddressOf());
+	DirectX11::GetInstance().pContext->PSSetShaderResources(0, 1, this->pTextureView.GetAddressOf());
 }

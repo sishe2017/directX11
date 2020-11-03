@@ -22,12 +22,15 @@ void Mesh::SetVertexPos(std::vector<float> vertices)
 //设置纹理坐标
 void Mesh::SetVertexTexCoord(std::vector<float> texCoords)
 {
+	inputAssembler->SetVertexTexCoord(texCoords);
 }
 
 //设置顶点索引
 void Mesh::SetIndex(std::vector<unsigned int> indices)
 {
 	inputAssembler->SetVertexIndex(indices);
+	//提交数据
+	inputAssembler->CommitVertexData();
 }
 
 //绑定网格

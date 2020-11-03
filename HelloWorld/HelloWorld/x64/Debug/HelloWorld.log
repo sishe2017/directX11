@@ -1,8 +1,2 @@
-﻿  DirectX11Pipeline.cpp
-  InputAssembler.cpp
-  GameObject.cpp
-  Geometry.cpp
-  WinMain.cpp
-  正在生成代码...
-  LINK : 没有找到 D:\GitResponsitory\directX11\HelloWorld\x64\Debug\HelloWorld.exe 或上一个增量链接没有生成它；正在执行完全链接
+﻿  CubeBehavior.cpp
   HelloWorld.vcxproj -> D:\GitResponsitory\directX11\HelloWorld\x64\Debug\HelloWorld.exe

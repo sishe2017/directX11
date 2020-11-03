@@ -21,13 +21,15 @@ public:
 	//设置顶点所有数据
 	void SetVertexData(std::vector<float> data, std::vector<unsigned int> strides, std::vector<std::string> semantics);
 	//设置顶点位置数据
-	void SetVertexPos(std::vector<float> positions, UINT stride = 3 * sizeof(float));
+	void SetVertexPos(std::vector<float> positions, UINT stride = 3);
 	//设置顶点纹理坐标
 	void SetVertexTexCoord(std::vector<float> texCoords);
 	//设置顶点索引数据
 	void SetVertexIndex(std::vector<unsigned int> &indices);
 	//把顶点的数据绑定输入装配阶段
 	void BindVertexData();
+	//提交顶点数据缓存
+	void CommitVertexData();
 
 private:
 	//基本图元默认是三角形
